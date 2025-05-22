@@ -7,7 +7,12 @@ import { createContext, useContext } from 'react';
 export type UseContainerFn<Props extends object, HookReturn> = (args: Props) => HookReturn;
 
 export type UseFn<HookReturn> = () => HookReturn;
-
+/**
+ * 创建一个局部上下文对象
+ * @param useContainer
+ * @param defaultInjection
+ * @returns
+ */
 export default function createContextContainer<HookReturn, Props extends object>(
   useContainer: UseContainerFn<Props, HookReturn>,
   defaultInjection?: HookReturn,
