@@ -1,6 +1,6 @@
-import { cn } from '@/components/lib/utils';
-import type { WeatherData } from './item';
+import type { WeatherData } from '../item';
 import dayjs from 'dayjs';
+import { TodayWeatherSection, TodayWeatherSubSection, TodayWeatherWrapper } from './twd';
 
 interface TodayWeatherItemProps extends WeatherData {
   className?: string;
@@ -16,8 +16,8 @@ export const TodayWeatherItem = ({
   className,
 }: TodayWeatherItemProps) => {
   return (
-    <div className={cn('bg-primary/10 rounded-md p-4', className)}>
-      <section className="flex flex-col items-center justify-center gap-2">
+    <TodayWeatherWrapper className={className}>
+      <TodayWeatherSection>
         <div className="flex items-center gap-3">
           <div className="text-primary text-4xl">
             <i className={`qi-${iconDay}`}></i>
@@ -26,14 +26,14 @@ export const TodayWeatherItem = ({
         </div>
         <div className="flex items-center">
           <div className="flex items-center">
-            <span className="mr-2 text-2xl font-bold">{dayTemp}°</span>
-            <span className="text-muted-foreground mx-1">/</span>
-            <span className="text-muted-foreground text-2xl">{nightTemp}°</span>
+            <span className="text-2xl font-bold">{dayTemp}℃</span>
+            <span className="mx-1"> / </span>
+            <span className="text-2xl font-bold">{nightTemp}℃</span>
           </div>
         </div>
-      </section>
+      </TodayWeatherSection>
 
-      <div className="flex items-center justify-center gap-2">
+      <TodayWeatherSubSection>
         <span className="text-lg font-bold">今天</span>
         <span className="text-muted-foreground vertical-text text-sm">{dayjs(date).format('MM/DD')}</span>
         {moonPhase && (
@@ -41,7 +41,7 @@ export const TodayWeatherItem = ({
             <i className={`qi-${moonPhase} text-xl`}></i>
           </div>
         )}
-      </div>
-    </div>
+      </TodayWeatherSubSection>
+    </TodayWeatherWrapper>
   );
 };
